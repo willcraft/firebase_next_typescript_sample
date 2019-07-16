@@ -8,7 +8,7 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "next:serve": "next build ./src/ && NODE_ENV=production firebase serve",
-    "next:dev": "concurrently 'nodemon next build ./src' 'NODE_ENV=production firebase serve'"
+    "next:dev": "concurrently 'nodemon --exec \"next build ./src\"' 'NODE_ENV=production firebase serve'"
   },
   "engines": {
     "node": "8"
@@ -31,9 +31,5 @@
     "nodemon": "^1.19.1",
     "typescript": "^3.5.3"
   },
-  "private": true,
-  "nodemonConfig": {
-    "ignore": ["dist/", "node_modules"],
-    "watch": ["*.tsx", "*.ts"]
-  }
+  "private": true
 }

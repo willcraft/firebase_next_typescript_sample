@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const Home = () => (
   <>
-    <h1>TEST!!</h1>
-    <Link href="about"><a>About!!</a></Link>
+    <h1>TEST!</h1>
+    <Link href="about"><a>About</a></Link>
   </>
 )
 

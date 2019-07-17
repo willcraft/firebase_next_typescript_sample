@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "ignore": [
+      "**/src/**"
+    ]
+  },
   "hosting": {
     "public": "public",
     "rewrites": [{

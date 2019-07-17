@@ -19,10 +19,11 @@ const Post = ({ stars, id }: { stars: number; id: number }) => {
 };
 
 Post.getInitialProps = async ({ query }: { query: any }) => {
-  const res = await fetch('https://api.github.com/repos/zeit/next.js');
-  const json = await res.json();
+  // const res = await fetch('https://api.github.com/repos/zeit/next.js');
+  // const json = await res.json();
   const { id } = query;
-  return { stars: json.stargazers_count, id };
+  return { id };
+  // return { stars: json.stargazers_count, id };
 };
 
 export default Post;

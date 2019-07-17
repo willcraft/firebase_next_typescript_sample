@@ -7,27 +7,14 @@ const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev, conf: { distDir: './dist' }})
 const handle = nextApp.getRequestHandler()
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+const server = express()
 
+server.get('/post/:id', (req, res) => {
+  return nextApp.render(req, res, '/post', { id: req.params.id })
+})
 
-exports.app = functions.https.onRequest((req, res) => {
+server.get('*', (req, res) => {
+  return nextApp.prepare().then(() => handle(req, res))
+})
 
-  return nextApp.prepare().then(() => {
-    const server = express()
-
-    server.get('/posts/:id', (req, res) => {
-      return nextApp.render(req, res, '/posts', { id: req.params.id })
-    })
-
-    server.get('*', (req, res) => {
-      return handle(req, res)
-    })
-
-    // server.listen(port, err => {
-    //   if (err) throw err
-    //   console.log(`> Ready on http://localhost:${port}`)
-    // })
-  });
-});
+exports.app = functions.https.onRequest(server);
